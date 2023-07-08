@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>ShopGrids - Bootstrap 5 eCommerce HTML Template.</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/images/favicon.svg') }}" />
@@ -15,6 +15,13 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/tiny-slider.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/css/glightbox.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/css/main.css') }}" />
+
+    <style>
+        .form-control.is-invalid,
+        .was-validated .form-control:invalid {
+            border-color: #dc3545 !important;
+        }
+    </style>
 
     @stack('styles')
 
@@ -88,18 +95,31 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-12">
                         <div class="top-end">
-                            <div class="user">
-                                <i class="lni lni-user"></i>
-                                Hello
-                            </div>
-                            <ul class="user-login">
-                                <li>
-                                    <a href="login.html">Sign In</a>
-                                </li>
-                                <li>
-                                    <a href="register.html">Register</a>
-                                </li>
-                            </ul>
+                            @guest
+                                <ul class="user-login">
+                                    <li>
+                                        <a href="{{ route('login') }}">Sign In</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('register') }}">Register</a>
+                                    </li>
+                                </ul>
+                            @else
+                                <div class="user">
+                                    <i class="lni lni-user"></i>
+                                    Hello, {{ Auth::user()->first_name }}
+                                </div>
+                                <ul class="user-login">
+                                    <li>
+                                        <form action="{{ route('logout') }}" method="POST">
+                                            @csrf
+                                            <button type="submit">Logout</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            @endguest
+
+
                         </div>
                     </div>
                 </div>

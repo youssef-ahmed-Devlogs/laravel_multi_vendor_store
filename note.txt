@@ -1,0 +1,19 @@
+=== Tables ===
+
+store_owners
+admins
+user_profiles
+user_address
+user_payments
+
+filesystem(hub) Manage all files
+
+categories
+products
+
+carts
+favories
+
+orders
+order_items
+oreder_address
