@@ -8,7 +8,7 @@
                 <ol class="breadcrumb float-sm-right">
                     @section('breadcrumb')
                         <li class="breadcrumb-item">
-                            <a href="{{ route('dashboard') }}">Home</a>
+                            <a href="{{ route('dashboard.index') }}">Home</a>
                         </li>
                     @show
                 </ol>
