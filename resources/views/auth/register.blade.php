@@ -67,6 +67,20 @@
 
                             <div class="col-sm-6">
                                 <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input class="form-control @error('username') is-invalid @enderror" type="text"
+                                        name="username" id="username" value="{{ old('username') }}" required>
+
+                                    @error('username')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
                                     <label for="email">E-mail Address</label>
                                     <input class="form-control @error('email') is-invalid @enderror" type="email"
                                         name="email" id="email" value="{{ old('email') }}" required>

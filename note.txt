@@ -8,6 +8,7 @@ user_payments
 
 filesystem(hub) Manage all files
 
+stores
 categories
 products
 
