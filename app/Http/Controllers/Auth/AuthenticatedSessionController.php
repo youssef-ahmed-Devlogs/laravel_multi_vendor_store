@@ -31,6 +31,7 @@ class AuthenticatedSessionController extends Controller
 
         if (Auth::user()->hasDashboard()) {
             return redirect()->intended(RouteServiceProvider::DASHBOARD);
+            // return redirect(RouteServiceProvider::DASHBOARD);
         }
 
         return redirect()->intended(RouteServiceProvider::HOME);
