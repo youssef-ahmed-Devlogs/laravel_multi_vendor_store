@@ -29,7 +29,12 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        if (Auth::user()->hasDashboard()) {
+            return redirect()->intended(RouteServiceProvider::DASHBOARD);
+        }
+
         return redirect()->intended(RouteServiceProvider::HOME);
+
     }
 
     /**
@@ -37,12 +42,19 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+
+        $hasDashboard = Auth::user()->hasDashboard();
+
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        if ($hasDashboard) {
+            return redirect(RouteServiceProvider::DASHBOARD . '/login');
+        }
+
+        return redirect(RouteServiceProvider::HOME);
     }
 }

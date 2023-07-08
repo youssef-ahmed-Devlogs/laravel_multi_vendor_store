@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('admins', function (Blueprint $table) {
-            $table->id();
             $table->foreignId('user_id')->constrained('users', 'id')->cascadeOnDelete()->cascadeOnUpdate();
             $table->enum('type', ['super-admin', 'admin', 'publisher'])->default('admin');
             $table->timestamps();
+            $table->primary('user_id');
         });
     }
 

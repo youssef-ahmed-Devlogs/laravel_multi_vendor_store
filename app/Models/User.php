@@ -46,4 +46,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function admin()
+    {
+        return $this->hasOne(Admin::class, 'user_id', 'id');
+    }
+
+    public function storeOwner()
+    {
+        return $this->hasOne(StoreOwner::class, 'user_id', 'id');
+    }
+
+    public function hasDashboard()
+    {
+        return $this->admin || $this->storeOwner;
+    }
 }

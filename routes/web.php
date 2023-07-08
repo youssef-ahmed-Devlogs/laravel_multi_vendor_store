@@ -14,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get('/', [FrontendController::class, 'index'])->name('front.home');
+Route::get('/', [FrontendController::class, 'index'])->name('front.home')->middleware('auth');
 
 require __DIR__ . '/auth.php';
