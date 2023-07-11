@@ -86,7 +86,9 @@
                                     name="password" id="password" required>
 
                                 @error('password')
-                                    <small class="text-danger">{{ $message }}</small>
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
                                 @enderror
                             </div>
 
